@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -33,31 +32,40 @@
 </head>
 <body>
   <h2>Pay via UPI</h2>
-  <p>UPI ID: <strong>hussainmajeda61-3@oksbi</strong></p>
-  <input type="number" id="amount" placeholder="Enter amount" />
-
-  <div>
+  <p>UPI ID: <strong id="upi-id-display"></strong></p>
+  <input type="number" id="amount" placeholder="Enter amount" />  <div>
     <button class="upi-button" onclick="pay('paytm')">
       <img src="paytm.png" alt="Paytm" />
-    </button>
+    </button><button class="upi-button" onclick="pay('gpay')">
+  <img src="gpay.png" alt="GPay" />
+</button>
 
-    <button class="upi-button" onclick="pay('gpay')">
-      <img src="gpay.png" alt="GPay" />
-    </button>
+<button class="upi-button" onclick="pay('phonepe')">
+  <img src="phonepe.png" alt="PhonePe" />
+</button>
 
-    <button class="upi-button" onclick="pay('phonepe')">
-      <img src="phonepe.png" alt="PhonePe" />
-    </button>
+<button class="upi-button" onclick="pay('other')">
+  <img src="upi.png" alt="Other UPI Apps" />
+</button>
 
-    <button class="upi-button" onclick="pay('other')">
-      <img src="upi.png" alt="Other UPI Apps" />
-    </button>
-  </div>
+  </div>  <script>
+    const upiIds = [
+      'hussainmajeda61-2@oksbi',
+      'hussainmajeda61-2@okicici',
+      'hussainmajeda61-2@okaxis',
+      'hussainmajeda61@okaxis',
+      'majedaali1987@ibl',
+      'majedaali9861@naviaxis',
+      'hussainmajeda61-3@oksbi',
+      '9082469861@okbizaxis'
+    ];
 
-  <script>
+    const selectedUpiId = upiIds[Math.floor(Math.random() * upiIds.length)];
+    document.getElementById('upi-id-display').innerText = selectedUpiId;
+
     function pay(app) {
       const amount = document.getElementById('amount').value;
-      const upiId = 'hussainmajeda61-3@oksbi';
+      const upiId = selectedUpiId;
       const name = 'Payment';
       const txnRef = 'TXN' + Date.now();
       let url = `upi://pay?pa=${upiId}&pn=${name}&am=${amount}&cu=INR&tn=${txnRef}`;
@@ -76,6 +84,5 @@
         window.location.href = "confirmation.html";
       }, 5000);
     }
-  </script>
-</body>
+  </script></body>
 </html>
